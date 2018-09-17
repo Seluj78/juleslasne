@@ -16,7 +16,7 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 """
 
-from flask import Blueprint
+from flask import Blueprint, render_template
 
 home_bp = Blueprint('home', __name__)
 
@@ -24,4 +24,4 @@ home_bp = Blueprint('home', __name__)
 @home_bp.route('/')
 def home():
     # Do some stuff
-    return 'Hello World'
+    return render_template('index.html')
