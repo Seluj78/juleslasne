@@ -16,7 +16,10 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 """
 
-from flask import Blueprint, render_template
+from flask import Blueprint, render_template, request, flash, redirect, url_for
+
+from website.utils.string import decode_bytes
+from website.email.contact import contact_send_mail
 
 home_bp = Blueprint('home', __name__)
 
@@ -25,3 +28,25 @@ home_bp = Blueprint('home', __name__)
 def home():
     # Do some stuff
     return render_template('index.html')
+
+
+@home_bp.route('/send_contact_email', methods=["POST", "GET"])
+def send_contact_email():
+    # Do some stuff
+    """`
+        Reads the url parameters and sends an email
+    """
+    name = decode_bytes(request.args.get('contact_name'))
+    email = decode_bytes(request.args.get('contact_email'))
+    text = decode_bytes(request.args.get('contact_text'))
+    copy = bool(request.args.get('copy'))
+
+    if email is None:
+        flash("Missing email parameter", "error")
+        return redirect(url_for("home.home"))
+    if text is None:
+        flash("Missing text parameter", "error")
+        return redirect(url_for("home.home"))
+    contact_send_mail(email, text, name, copy)
+    flash("Email sent ! I'll get back to you shortly !", "success")
+    return redirect(url_for("home.home"))
