@@ -1,2 +1,4 @@
 Flask
 flask-mail
+validate_email
+py3DNS

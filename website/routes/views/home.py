@@ -18,6 +18,8 @@
 
 from flask import Blueprint, render_template, request, flash, redirect, url_for
 
+from validate_email import validate_email
+
 from website.utils.string import decode_bytes
 from website.email.contact import contact_send_mail
 
@@ -41,6 +43,10 @@ def send_contact_email():
     text = decode_bytes(request.args.get('contact_text'))
     copy = bool(request.args.get('copy'))
 
+    if not validate_email(email, check_mx=True, verify=True):
+        flash("Sorry, but the email you provided doesn't match the rfc5322 or the domain provided doesn't return a "
+              "correct STMP response.", "error")
+        return redirect(url_for("home.home"))
     if email is None:
         flash("Missing email parameter", "error")
         return redirect(url_for("home.home"))
