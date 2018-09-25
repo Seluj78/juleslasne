@@ -1,0 +1,12 @@
+{
+  "name": "JulesLasne.com API",
+  "version": "0.0.2",
+  "description": "An API made in flask to showcase my skills",
+  "title": "JulesLasne.com API",
+  "url" : "https://juleslasne.com",
+  "template" : {
+    "withCompare" : false,
+    "withGenerator": false,
+    "forceLanguage": "en"
+  }
+}
