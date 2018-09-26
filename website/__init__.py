@@ -21,6 +21,8 @@ import os
 from flask import Flask
 from flask_mail import Mail
 
+import peewee
+
 # TODO: Change developement key when in live server. Check if running in wsgi and if yes then ask for new dev key
 
 if os.environ.get("FLASK_ENV", None) == "development":
@@ -36,15 +38,19 @@ if "FLASK_SECRET_KEY" not in os.environ:
 if "JL_NOREPLY_PASSWORD" not in os.environ:
     raise EnvironmentError("noreply@juleslasne.com's password is not set in the server's environment.")
 
-if "RECAPTCHA_SECRET_KEY" not in os.environ:
-    raise EnvironmentError("RECAPTCHA_SECRET_KEY is not set in the server's environment.")
+if "JL_DB_USER" not in os.environ:
+    raise EnvironmentError("JL_DB_USER should be set with the user used to access the DB")
+
+if "JL_DB_PASSWORD" not in os.environ:
+    raise EnvironmentError("JL_DB_PASSWORD should be set with the password used to access the DB")
+
 
 application = Flask(__name__)
 application.debug = os.environ.get("FLASK_DEBUG", 1)
 application.secret_key = os.environ.get("FLASK_SECRET_KEY", "ThisIsADevelopmentKey")
 
 
-# Email configutation
+# Email configuration
 application.config['MAIL_SERVER'] = 'smtp.gmail.com'
 application.config['MAIL_PORT'] = 465
 application.config['MAIL_USE_TLS'] = False
@@ -54,6 +60,20 @@ application.config['MAIL_PASSWORD'] = os.environ.get("JL_NOREPLY_PASSWORD")
 application.config['MAIL_DEFAULT_SENDER'] = 'noreply@juleslasne.com'
 mail = Mail(application)
 
+jl_db = peewee.MySQLDatabase(
+    "juleslasne",
+    password=os.environ.get("JL_DB_PASSWORD", None),
+    user=os.environ.get("JL_DB_USER", None)
+)
+
+
+from website.models.projects import Project
+
+if not Project.table_exists():
+    Project.create_table()
+
 from website.routes.views.home import home_bp
 
 application.register_blueprint(home_bp)
+
+from website.routes.api import projects

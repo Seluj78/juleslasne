@@ -20,7 +20,7 @@ python:
   - 3.5
   - 3.6
   - 3.7-dev
-#  - 3.8-dev
+  #- 3.8-dev
 
 install: pip install -r requirements.txt
 
@@ -30,12 +30,26 @@ env:
 before_script:
   - export FLASK_APP="$TRAVIS_BUILD_DIR/application.py"
   - export FLASK_ENV="development"
-  - mysql -e 'create database jl_db;'
+  - mysql -e 'create database juleslasne;'
+  - npm install apidoc -g
 
 script:
   - nosetests
   - flake8
   - export MYPYPATH=. && mypy --ignore-missing-imports .
+  - python3 generate_doc.py apidoc
+
+deploy:
+  provider: s3
+  access_key_id: $AWS_ACCESS_KEY
+  secret_access_key: $AWS_SECRET_ACCESS_KEY
+  bucket: docs-juleslasne
+  region: eu-west-3
+  skip_cleanup: true
+  acl: public_read
+  on:
+    branch: master
+  local_dir: docs
 
 notifications:
   email:

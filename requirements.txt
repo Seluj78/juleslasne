@@ -2,6 +2,10 @@ Flask
 flask-mail
 validate_email
 py3DNS
+peewee
+pymysql
+flask-apidoc
+flask_script
 nose
 flake8
 mypy

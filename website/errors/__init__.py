@@ -1,6 +1,8 @@
+# -*- coding: utf-8 -*-
+
 """
-    Source of juleslasne.com/.net/.me/.fr
-    Copyright (C) 2018-2019 Jules Lasne - <jules@juleslasne.com>
+    The OpenApprentice Foundation and its website OpenApprentice.org
+    Copyright (C) 2018 The OpenApprentice Foundation - contact@openapprentice.org
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -15,25 +17,3 @@
     You should have received a copy of the GNU General Public License
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 """
-
-from flask_mail import Message
-
-from website import mail
-
-
-def send_email(to: str, subject: str, template: str) -> None:
-    """
-    This will send a email
-
-    :param to: Email recipient
-    :param subject: The subject of the email
-    :param template: The email html template
-    """
-
-    msg = Message(
-        subject,
-        recipients=[to],
-        html=template,
-        sender="noreply@juleslasne.com"  # TODO: Make this a config
-    )
-    mail.send(msg)
