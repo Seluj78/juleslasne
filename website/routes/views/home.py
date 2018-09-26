@@ -43,9 +43,8 @@ def send_contact_email():
     text = decode_bytes(request.args.get('contact_text'))
     copy = bool(request.args.get('copy'))
 
-    if not validate_email(email, check_mx=True, verify=True):
-        flash("Sorry, but the email you provided doesn't match the rfc5322 or the domain provided doesn't return a "
-              "correct STMP response.", "error")
+    if not validate_email(email):
+        flash("Sorry, but the email you provided doesn't match the rfc5322 standard.", "error")
         return redirect(url_for("home.home"))
     if email is None:
         flash("Missing email parameter", "error")
