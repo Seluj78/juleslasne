@@ -30,7 +30,7 @@ env:
 before_script:
   - export FLASK_APP="$TRAVIS_BUILD_DIR/application.py"
   - export FLASK_ENV="development"
-  - mysql -e 'create database jl_db;'
+  - mysql -e 'create database juleslasne;'
 
 script:
   - nosetests
