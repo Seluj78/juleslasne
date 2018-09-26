@@ -28,6 +28,9 @@ home_bp = Blueprint('home', __name__)
 
 @home_bp.route('/')
 def home():
+    """
+    Renders the home main template
+    """
     return render_template('index.html')
 
 
@@ -47,9 +50,40 @@ def send_contact_email():
     if email is None:
         flash("Missing email parameter", "error")
         return redirect(url_for("home.home"))
+    if name is None:
+        flash("Missing name parameter", "error")
+        return redirect(url_for("home.home"))
     if text is None:
         flash("Missing text parameter", "error")
         return redirect(url_for("home.home"))
     contact_send_mail(email, text, name, copy)
     flash("Email sent ! I'll get back to you shortly !", "success")
+    return redirect(url_for("home.home"))
+
+
+@home_bp.route('/register_api', methods=["POST", "GET"])
+def register_api():
+    """
+    # TODO: Add a "forgot/lost your codes"
+    # TODO: Add a "Resend your codes" link in a flash if user is already in user DB
+    """
+
+    name = decode_bytes(request.args.get('api_name'))
+    email = decode_bytes(request.args.get('api_email'))
+    reason = decode_bytes(request.args.get('api_reason'))
+
+    if not validate_email(email):
+        flash("Sorry, but the email you provided doesn't match the rfc5322 standard.", "error")
+        return redirect(url_for("home.home"))
+    if email is None:
+        flash("Missing email parameter", "error")
+        return redirect(url_for("home.home"))
+    if name is None:
+        flash("Missing name parameter", "error")
+        return redirect(url_for("home.home"))
+    if reason is None:
+        flash("Missing reason parameter", "error")
+        return redirect(url_for("home.home"))
+    # Create api_user account
+    # Send api_user email with credentials
     return redirect(url_for("home.home"))

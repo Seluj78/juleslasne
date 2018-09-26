@@ -28,13 +28,13 @@ from website.errors import notfound
 
 class Project(Model):
     """
-    This is the user model used in the DB
+    This is the Project model used in the DB
     """
 
     uuid = CharField(
         primary_key=True,
         default=str(uuid.uuid4()),
-        help_text="The user's unique identifier",
+        help_text="The project's unique identifier",
         verbose_name="Unique Identifier"
     )
     name = CharField(
