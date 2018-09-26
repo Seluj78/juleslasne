@@ -111,3 +111,5 @@ bin
 include
 pyvenv.cfg
 pip-selfcheck.json
+share
+man
