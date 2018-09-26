@@ -38,9 +38,6 @@ if "FLASK_SECRET_KEY" not in os.environ:
 if "JL_NOREPLY_PASSWORD" not in os.environ:
     raise EnvironmentError("noreply@juleslasne.com's password is not set in the server's environment.")
 
-if "RECAPTCHA_SECRET_KEY" not in os.environ:
-    raise EnvironmentError("RECAPTCHA_SECRET_KEY is not set in the server's environment.")
-
 if "JL_DB_USER" not in os.environ:
     raise EnvironmentError("JL_DB_USER should be set with the user used to access the DB")
 
