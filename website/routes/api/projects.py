@@ -89,7 +89,7 @@ def projects():
 def project_create():
     """
     # TODO: Add checks if x entry is missing.
-    @api {post} /projects Create a new project
+    @api {post} /projects Create a project
 
     @apiName CreateProject
     @apiGroup Projects
