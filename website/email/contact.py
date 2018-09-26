@@ -24,7 +24,17 @@ from website.email.contact_copy import copy_generate_html_email
 from website.utils.email import send_email
 
 
-def contact_generate_html_email(email, text, name):
+def contact_generate_html_email(email: str, text: str, name: str) -> str:
+    """
+    Generates a contact email ("You've received a message from X")
+
+    :param email: The email who sent it
+    :param text: The body of the message
+    :param name: The name of the sender
+
+    :return: Returns the rendered HTML template
+    """
+
     return render_template("email/contact.html",
                            email=email,
                            text=text,
@@ -34,7 +44,16 @@ def contact_generate_html_email(email, text, name):
                            )
 
 
-def contact_send_mail(email, text, name, send_copy=False):
+def contact_send_mail(email: str, text: str, name: str, send_copy=False) -> None:
+    """
+    Sends the new message email.
+
+    :param email: The person who sent the email
+    :param text: The body of the email
+    :param name: The name of the person who sent the email
+    :param send_copy: If true, send a copy to the sender.
+    """
+
     html_email = contact_generate_html_email(
         email=email,
         text=text,

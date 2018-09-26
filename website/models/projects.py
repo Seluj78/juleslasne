@@ -30,7 +30,7 @@ class Project(Model):
     """
     This is the user model used in the DB
     """
-    # Required:
+
     uuid = CharField(
         primary_key=True,
         default=str(uuid.uuid4()),
@@ -67,7 +67,17 @@ class Project(Model):
         database = jl_db  # type: ignore
 
 
-def create_project(name, description, is_ongoing, image_url=None):
+def create_project(name: str, description: str, is_ongoing: bool, image_url=None) -> Project:
+    """
+    Creates a new project object and adds it to the DB.
+
+    :param name: The name of the project to be added
+    :param description: The description of the project
+    :param is_ongoing: Is the project currently being worked on
+    :param image_url: the url of the image to represent the project
+
+    :return: Returns the newly created Project object
+    """
 
     if not image_url:
         image_url = \
@@ -82,9 +92,17 @@ def create_project(name, description, is_ongoing, image_url=None):
     )
 
 
-def get_project(identifier):
+def get_project(identifier: str) -> Project:
+    """
+    Will get a project from it's name or uuid, or raise a NotFound error.
+
+    :param identifier: The email or uuid of the project to be fetched
+
+    :return: Will return the fetched Project, otherwise will raise a NotFound error.
+    """
+
     not_found = 0
-    found_project = None
+    found_project = Project()  # Done to shush mypy
 
     try:
         project = Project.get(Project.uuid == decode_bytes(identifier))
@@ -107,7 +125,15 @@ def get_project(identifier):
     return found_project
 
 
-def get_project_dict(project):
+def project_to_dict(project: Project) -> dict:
+    """
+    Converts a Project object to a dict
+
+    :param project: The Project to convert
+
+    :return: Returns a dict containing all the info on a project
+    """
+
     output = dict()
     output['uuid'] = project.uuid
     output['name'] = project.name

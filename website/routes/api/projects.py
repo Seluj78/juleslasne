@@ -25,7 +25,7 @@ from werkzeug.exceptions import BadRequest
 
 
 from website import application
-from website.models.projects import Project, get_project_dict, create_project, get_project
+from website.models.projects import Project, project_to_dict, create_project, get_project
 from website.errors.badrequest import BadRequestError
 from website.success.created import SuccessCreated
 from website.success.deleted import SuccessDeleted
@@ -75,7 +75,7 @@ def projects():
     output = []
     projs = Project.select()
     for project in projs:
-        output.append(get_project_dict(project))
+        output.append(project_to_dict(project))
 
     response = application.response_class(
         response=json.dumps(output),

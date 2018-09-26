@@ -28,13 +28,11 @@ home_bp = Blueprint('home', __name__)
 
 @home_bp.route('/')
 def home():
-    # Do some stuff
     return render_template('index.html')
 
 
 @home_bp.route('/send_contact_email', methods=["POST", "GET"])
 def send_contact_email():
-    # Do some stuff
     """`
         Reads the url parameters and sends an email
     """

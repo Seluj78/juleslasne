@@ -21,7 +21,17 @@ import datetime
 from flask import render_template
 
 
-def copy_generate_html_email(email, text, name):
+def copy_generate_html_email(email: str, text: str, name: str) -> str:
+    """
+    Generates the message copy email.
+
+    :param email: The email of the sender
+    :param text: The body of the message
+    :param name: The name of the sender
+
+    :return: Returns the generated copy of the message email in HTML form.
+    """
+
     return render_template("email/contact_copy.html",
                            email=email,
                            text=text,
