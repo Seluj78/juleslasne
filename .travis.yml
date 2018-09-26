@@ -48,7 +48,7 @@ deploy:
   skip_cleanup: true
   acl: public_read
   on:
-    branch: api
+    branch: master
   local_dir: docs
 
 notifications:
