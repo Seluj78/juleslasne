@@ -1,0 +1,45 @@
+os:
+  - linux
+
+services:
+  - mysql
+
+addons:
+  apt:
+    sources:
+      - mysql-5.7-trusty
+    packages:
+      - mysql-server
+
+dist: trusty
+sudo: required
+
+language: python
+
+python:
+  - 3.5
+  - 3.6
+  - 3.7-dev
+#  - 3.8-dev
+
+install: pip install -r requirements.txt
+
+env:
+  - JL_NOREPLY_PASSWORD=FakePassword RECAPTCHA_SECRET_KEY=WrongKey JL_DB_USER=travis JL_DB_PASSWORD=""
+
+before_script:
+  - export FLASK_APP="$TRAVIS_BUILD_DIR/application.py"
+  - export FLASK_ENV="development"
+  - mysql -e 'create database jl_db;'
+
+script:
+  - nosetests
+  - flake8
+  - export MYPYPATH=. && mypy --ignore-missing-imports .
+
+notifications:
+  email:
+    recipients:
+      - jules@juleslasne.com
+    on_success: change
+    on_failure: always
