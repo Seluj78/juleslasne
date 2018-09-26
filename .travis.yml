@@ -46,6 +46,7 @@ notifications:
 
 before_deploy:
   - npm install apidoc -g
+  - python3 generate_doc.py apidoc
 
 deploy:
   provider: s3
@@ -56,5 +57,4 @@ deploy:
   acl: public_read
   on:
     branch: api
-  script: python3 generate_doc.py apidoc
   local_dir: docs
