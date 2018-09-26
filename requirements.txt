@@ -2,3 +2,6 @@ Flask
 flask-mail
 validate_email
 py3DNS
+nose
+flake8
+mypy
