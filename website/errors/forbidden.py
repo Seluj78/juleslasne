@@ -30,7 +30,7 @@
          {
              "name": "Forbidden Error",
              "message": "The server refused to execute what you wanted.",
-             "solution": "Authenticating won't change anything. Please contact the administrator if you thing this is a bug.",
+             "solution": "Logging in will not fix the issue. Please contact the administrator if this is a bug.",
              "status_code": 403
          }
 """

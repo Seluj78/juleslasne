@@ -64,7 +64,7 @@ class Project(Model):
         """
         This model uses the "jl_db.db" database.
         """
-        database = jl_db
+        database = jl_db  # type: ignore
 
 
 def create_project(name, description, is_ongoing, image_url=None):
