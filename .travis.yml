@@ -31,21 +31,12 @@ before_script:
   - export FLASK_APP="$TRAVIS_BUILD_DIR/application.py"
   - export FLASK_ENV="development"
   - mysql -e 'create database juleslasne;'
+  - npm install apidoc -g
 
 script:
   - nosetests
   - flake8
   - export MYPYPATH=. && mypy --ignore-missing-imports .
-
-notifications:
-  email:
-    recipients:
-      - jules@juleslasne.com
-    on_success: change
-    on_failure: always
-
-before_deploy:
-  - npm install apidoc -g
   - python3 generate_doc.py apidoc
 
 deploy:
@@ -54,7 +45,16 @@ deploy:
   secret_access_key:
     secure: pDPa3qp+HO7HuQAxRK5nr/yg6v9Ihvca3yMqOzGHLO/JyaL+R9FIz0244j1hk/LLt04YOKGIDF29k2fQf8tq2cpqjFHlAam1x59nWUjYEWUc1jZAB98/0XFtA9ysMsm0vNaa5D1m0J6uY1hqeJ2WTuJ3fOhQ/NpQzORb6jrmOnEcLaq9VBitDnEa0nP3UzR4HVeY8Ns5hGOaL+UcAClbden86OZBq4p8KnjE2igIYqmd4L/gvdG3c9SIil7333rE4Z4tYNwpQI/LP3yRo4DQVBGlkF7JAIeDV8hrd5ED2iryBJ+i91C3ObNGwattnaUL77soXg3f/5E23UQirT4V/xBpdWjrUP5MEIJz+s7otJRuAxBB/dVtP+hcVfMArhbstMlh1Jcfkq0PSBqBg8FjIWhyEK/qP3vne2dRNvowkE21Vcb4gHpYFT1tLLn5aQDOXkzIM3KXbGsqF6MiIv5QK4bYcsotjltPlpQzWpoEt5cuK3Iu6JOL4GIGiYi1t0x9BQq0NbTxHgv/XWdTlWcbaEr8j9NnyaM454V63joq2RbWr4Myc2C1JOFRCAw+gElunNWTB5G0v87PvcTpgosxvYc07x1odHAW5+DOP/0xefYroDUawLaPJ7NXMpOGZ2GUmttHV75sm9ba86Umj7O3s813BMkwkzfCpXP/OkFT5RM=
   bucket: docs-juleslasne
+  region: eu-west-3
+  skip_cleanup: true
   acl: public_read
   on:
     branch: api
   local_dir: docs
+
+notifications:
+  email:
+    recipients:
+      - jules@juleslasne.com
+    on_success: change
+    on_failure: always
