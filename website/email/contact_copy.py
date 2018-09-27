@@ -20,6 +20,8 @@ import datetime
 
 from flask import render_template
 
+# TODO: Add the preview_text
+
 
 def copy_generate_html_email(email: str, text: str, name: str) -> str:
     """
