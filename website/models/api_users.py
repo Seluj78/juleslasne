@@ -87,7 +87,7 @@ class ApiUser(Model):
         database = jl_db  # type: ignore
 
 
-def create_apiuser(name: str, email: str, reason: str) -> ApiUser:
+def create_apiuser(name: str, email: str, reason: str, scope="user") -> ApiUser:
     """
     Creates a new ApiUser object and adds it to the DB.
 
@@ -102,7 +102,8 @@ def create_apiuser(name: str, email: str, reason: str) -> ApiUser:
         name=name,
         email=email,
         reason=reason,
-        secret=decode_bytes(hexlify(os.urandom(16)))
+        secret=decode_bytes(hexlify(os.urandom(16))),
+        scope=scope
     )
 
 

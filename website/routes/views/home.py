@@ -20,8 +20,10 @@ from flask import Blueprint, render_template, request, flash, redirect, url_for,
 
 from validate_email import validate_email
 
+from website.models.api_users import create_apiuser
 from website.utils.string import decode_bytes
 from website.email.contact import contact_send_mail
+from website.email.apiuser_credentials import apiuser_send_credentials_email
 from website.statics import DOC_LINK
 
 home_bp = Blueprint('home', __name__)
@@ -68,6 +70,7 @@ def register_api():
     """
     # TODO: Add a "forgot/lost your codes"
     # TODO: Add a "Resend your codes" link in a flash if user is already in user DB
+    # TODO: Add a confirm link to confirm ApiUser account ?
     """
 
     name = decode_bytes(request.args.get('api_name'))
@@ -87,5 +90,8 @@ def register_api():
         flash("Missing reason parameter", "error")
         return redirect(url_for("home.home"))
     # Create api_user account
+    new_apiuser = create_apiuser(name, email, reason)
     # Send api_user email with credentials
+    apiuser_send_credentials_email(new_apiuser)
+    flash("Credentials sent ! (Don't forget to check your spam folder)", "success")
     return redirect(url_for("home.home"))
