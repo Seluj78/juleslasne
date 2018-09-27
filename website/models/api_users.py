@@ -34,6 +34,7 @@ class ApiUser(Model):
     This is the ApiUser model used in the DB
     """
     # TODO: Add a bool field called `can_track`
+    # TODO: Add a field called `nb_tokens_generated`
     # Where users, if they click on the link when receiving their codes choose to opt out of me tracking their number
     #  of times they accessed the api and the last time they did
 
@@ -94,6 +95,7 @@ def create_apiuser(name: str, email: str, reason: str, scope="user") -> ApiUser:
     :param name: The name of the ApiUser to be added
     :param email: The email of the ApiUser
     :param reason: The reason of the ApiUser
+    :param scope: The scope of the ApiUser
 
     :return: Returns the newly created ApiUser object
     """

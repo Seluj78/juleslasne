@@ -15,33 +15,29 @@
     You should have received a copy of the GNU General Public License
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 """
-import collections
 
-from typing import Union
+from flask import jsonify
 
 
-def decode_bytes(inp: Union[bytes, str])-> str:
+def SuccessTokenInfo(message: str, token_info: dict) -> dict:
     """
-    Will take in bytes or string and will return a string
-    :param inp: The bytes or string to decode
-    :return: Returns a string
-    """
-    ret = inp.decode() if isinstance(inp, bytes) else inp
-    return ret
+    Will generate a SuccessNewToken message with the appropriate return code and jsonify it.
 
+    :param message: The message to include
+    :param token_info: The info on the new token
 
-def convert_dict(data):
-    """
-    This function will convert from a unicode object to a string the keys and values of dict.
-
-    :param data: The dictionary to convert
-
-    :return: Returns the converted dict
+    :return: Returns a json response
     """
 
-    if isinstance(data, collections.Mapping):
-        return dict(map(convert_dict, data.items()))
-    elif isinstance(data, collections.Iterable):
-        return type(data)(map(convert_dict, data))
-    else:
-        return data
+    status_code = 200
+    success = True
+    json = {
+        'success': success,
+        'message': message,
+        'token_info': token_info,
+        'code': status_code
+    }
+    resp = jsonify(json)
+    resp.status_code = status_code
+
+    return resp

@@ -4,3 +4,5 @@ validate_email
 py3DNS
 peewee
 pymysql
+Flask-JWT-Extended
+pyjwt

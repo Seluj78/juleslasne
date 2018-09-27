@@ -9,3 +9,5 @@ flask_script
 nose
 flake8
 mypy
+Flask-JWT-Extended
+pyjwt

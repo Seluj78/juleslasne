@@ -69,7 +69,7 @@ def send_contact_email():
 def register_api():
     """
     # TODO: Add a "forgot/lost your codes"
-    # TODO: Add a "Resend your codes" link in a flash if user is already in user DB
+    # TODO: Add a "Resend your codes?" link in a flash if user is already in user DB
     # TODO: Add a confirm link to confirm ApiUser account ?
     # TODO: Create an api endpoint to register to the API -> that means adding a register_type in the DB
     """
