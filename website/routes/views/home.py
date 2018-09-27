@@ -16,12 +16,13 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 """
 
-from flask import Blueprint, render_template, request, flash, redirect, url_for
+from flask import Blueprint, render_template, request, flash, redirect, url_for, g
 
 from validate_email import validate_email
 
 from website.utils.string import decode_bytes
 from website.email.contact import contact_send_mail
+from website.statics import DOC_LINK
 
 home_bp = Blueprint('home', __name__)
 
@@ -31,6 +32,7 @@ def home():
     """
     Renders the home main template
     """
+    g.doc_link = DOC_LINK
     return render_template('index.html')
 
 
