@@ -154,6 +154,7 @@ def apiuser_to_dict(user: ApiUser) -> dict:
     output['email'] = user.email
     output['reason'] = user.reason
     output['secret'] = user.secret
+    output['scope'] = user.scope
     output['dt_created'] = user.dt_created.strftime("%Y-%m-%d %H:%M:%S")
     output['dt_last_access'] = user.dt_last_access.strftime("%Y-%m-%d %H:%M:%S")
     output['access_count'] = user.access_count
