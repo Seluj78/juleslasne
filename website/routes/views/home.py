@@ -59,7 +59,7 @@ def send_contact_email():
         flash("Missing text parameter", "error")
         return redirect(url_for("home.home"))
     contact_send_mail(email, text, name, copy)
-    flash("Email sent ! I'll get back to you shortly !", "success")
+    flash("Email sent ! I'll get back to you shortly ! (Don't forget to check your spam folder)", "success")
     return redirect(url_for("home.home"))
 
 
