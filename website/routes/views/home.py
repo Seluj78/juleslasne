@@ -38,7 +38,7 @@ def home():
     return render_template('index.html')
 
 
-@home_bp.route('/send_contact_email', methods=["POST", "GET"])
+@home_bp.route('/send_contact_email', methods=["GET"])
 def send_contact_email():
     """`
         Reads the url parameters and sends an email
@@ -65,12 +65,13 @@ def send_contact_email():
     return redirect(url_for("home.home"))
 
 
-@home_bp.route('/register_api', methods=["POST", "GET"])
+@home_bp.route('/register_api', methods=["GET"])
 def register_api():
     """
     # TODO: Add a "forgot/lost your codes"
     # TODO: Add a "Resend your codes" link in a flash if user is already in user DB
     # TODO: Add a confirm link to confirm ApiUser account ?
+    # TODO: Create an api endpoint to register to the API -> that means adding a register_type in the DB
     """
 
     name = decode_bytes(request.args.get('api_name'))
