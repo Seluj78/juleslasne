@@ -67,10 +67,16 @@ jl_db = peewee.MySQLDatabase(
 )
 
 
+# TODO: Send an email when tables are created, as a warning.
 from website.models.projects import Project
+from website.models.api_users import ApiUser
 
 if not Project.table_exists():
     Project.create_table()
+
+if not ApiUser.table_exists():
+    ApiUser.create_table()
+
 
 from website.routes.views.home import home_bp
 
