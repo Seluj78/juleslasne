@@ -16,23 +16,6 @@
 
     You should have received a copy of the GNU General Public License
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
-
-    @apiDefine error403
-
-    @apiError (Error 403) {String} name        Error name
-    @apiError (Error 403) {String} message     Error description
-    @apiError (Error 403) {String} solution    Error solution
-    @apiError (Error 403) {String} status_code HTTP status code
-
-    @apiErrorExample {json} Error 403 JSON
-         HTTP/1.1 403 Forbidden Error
-
-         {
-             "name": "Forbidden Error",
-             "message": "The server refused to execute what you wanted.",
-             "solution": "Logging in will not fix the issue. Please contact the administrator if this is a bug.",
-             "status_code": 403
-         }
 """
 
 from website import application
@@ -62,3 +45,23 @@ def generate_forbidden(error: ForbiddenError) -> dict:
     """
 
     return generate_error_json(error, 403)
+
+
+"""
+    @apiDefine error403
+
+    @apiError (Error 403) {String} name="Forbidden Error"  Error name
+    @apiError (Error 403) {String} message                 Error description
+    @apiError (Error 403) {String} solution                Error solution
+    @apiError (Error 403) {String} status_code=403         HTTP status code
+
+    @apiErrorExample {json} Error 403 JSON
+         HTTP/1.1 403 Forbidden Error
+
+         {
+             "name": "Forbidden Error",
+             "message": "The server refused to execute what you wanted.",
+             "solution": "Logging in will not fix the issue. Please contact the administrator if this is a bug.",
+             "status_code": 403
+         }
+"""

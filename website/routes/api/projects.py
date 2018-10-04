@@ -55,7 +55,7 @@ def projects():
         # ...
 
     @apiSuccess {Object}    list              List of all projects
-    @apiSuccess {Number}    status              200
+    @apiSuccess {Number}    status=200        The status code of the returned json
 
     @apiSuccessExample {json} Example successful response
         HTTP/1.1 200 OK
@@ -135,8 +135,8 @@ def project_create():
         data = r.json()
         # ...
 
-    @apiSuccess {Message} message New project PROJECT_NAME created.
-    @apiSuccess {Status} status  201
+    @apiSuccess {Message} message="New project PROJECT_NAME created." The message of the success
+    @apiSuccess {Status} status=201 The status of the success
 
     @apiSuccessExample {json} Example successful response
         HTTP/1.1 201 CREATED
@@ -201,7 +201,7 @@ def project_delete(uuid):
 
     @apiUse error404noproject
 
-    @apiSuccess {Status} status  204
+    @apiSuccess {Status} status=204 The status of the successful delete
     """
 
     get_project(uuid).delete_instance()
