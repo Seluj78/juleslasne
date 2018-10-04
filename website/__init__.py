@@ -20,7 +20,6 @@ import os
 
 from flask import Flask
 from flask_mail import Mail
-from flask_jwt_extended import JWTManager
 
 import peewee
 
@@ -68,7 +67,6 @@ jl_db = peewee.MySQLDatabase(
 )
 
 application.config['JWT_SECRET_KEY'] = os.environ.get('FLASK_SECRET_KEY')
-jwt = JWTManager(application)
 
 # TODO: Send an email when tables are created, as a warning.
 from website.models.projects import Project
