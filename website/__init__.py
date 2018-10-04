@@ -89,4 +89,6 @@ from website.routes.api import projects
 from website.routes.api import oauth
 
 
+from website.errors import method_not_allowed
+
 # TODO: Add a new entry in the error classes to put a link to the doc
