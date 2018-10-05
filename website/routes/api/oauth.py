@@ -236,7 +236,7 @@ def decode_and_test_token(request_headers: dict):
     try:
         payload = jwt.decode(
             user_token,
-            os.environ.get("FLASK_SECRET_KEY"),
+            os.environ.get("FLASK_SECRET_KEY", "DevKey"),
             leeway=30,
             issuer='jl:server',
             algorithms='HS256'
@@ -289,7 +289,7 @@ def generate_access_token(uuid: str, scope: str) -> str:
         'scope': scope
     }
     # Create and encode the token with all the info contained in the payload
-    access_token = decode_bytes(jwt.encode(payload, os.environ.get('FLASK_SECRET_KEY')))
+    access_token = decode_bytes(jwt.encode(payload, os.environ.get('FLASK_SECRET_KEY', "DevKey")))
     return access_token
 
 

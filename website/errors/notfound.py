@@ -118,4 +118,3 @@ def generate_notfound(error: NotFoundError) -> dict:
             "type": "BadRequestError"
     },
 """
-
