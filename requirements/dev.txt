@@ -9,4 +9,5 @@ flask_script
 nose
 flake8
 mypy
+pre-commit
 pyjwt
