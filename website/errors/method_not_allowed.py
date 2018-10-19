@@ -38,6 +38,7 @@ def method_not_allowed(e):
         "solution": "Try again with another method or contact the administrator if this is an error.",
         "status_code": 405,
         "success": False,
+        "name": e.__class__.__name__,
     }
 
     return jsonify(error), 405
