@@ -21,7 +21,15 @@ from flask_mail import Message
 from website import mail
 
 
-def send_email(to, subject, template):
+def send_email(to: str, subject: str, template: str) -> None:
+    """
+    This will send a email
+
+    :param to: Email recipient
+    :param subject: The subject of the email
+    :param template: The email html template
+    """
+
     msg = Message(
         subject,
         recipients=[to],

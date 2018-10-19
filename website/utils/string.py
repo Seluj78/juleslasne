@@ -16,8 +16,10 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 """
 
+from typing import Union
 
-def decode_bytes(inp):
+
+def decode_bytes(inp: Union[bytes, str])-> str:
     """
     Will take in bytes or string and will return a string
     :param inp: The bytes or string to decode

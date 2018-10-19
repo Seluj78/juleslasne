@@ -1,6 +1,8 @@
+# -*- coding: utf-8 -*-
+
 """
-    Source of juleslasne.com/.net/.me/.fr
-    Copyright (C) 2018-2019 Jules Lasne - <jules@juleslasne.com>
+    The OpenApprentice Foundation and its website OpenApprentice.org
+    Copyright (C) 2018 The OpenApprentice Foundation - contact@openapprentice.org
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
