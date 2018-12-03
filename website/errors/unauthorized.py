@@ -62,3 +62,39 @@ def generate_unauthorized(error: UnauthorizedError) -> dict:
     """
 
     return generate_error_json(error, 401)
+
+
+"""
+@apiDefine error401missingtoken
+
+@apiError (Error 401) {String} name="Unauthorized Error"  Error name
+@apiError (Error 401) {String} message                    Error description
+@apiError (Error 401) {String} solution                   Error solution
+@apiError (Error 401) {String} status_code=401            HTTP status code
+
+@apiErrorExample {json} Error 401 JSON Missing Token
+     HTTP/1.1 401 Unauthorized Error
+     {
+        "message": "Missing oauth token in request header.",
+        "name": "Unauthorized Error",
+        "solution": "You need to specify your token in the header as the authorization bearer.",
+        "type": "UnauthorizedError"
+    }
+"""
+"""
+@apiDefine error401expiredtoken
+
+@apiError (Error 401) {String} name="Unauthorized Error"  Error name
+@apiError (Error 401) {String} message                    Error description
+@apiError (Error 401) {String} solution                   Error solution
+@apiError (Error 401) {String} status_code=401              HTTP status code
+
+@apiErrorExample {json} Error 401 JSON Expired Token
+     HTTP/1.1 401 Unauthorized Error
+     {
+        "message": "Unauthorized: Token expired.",
+        "name": "Unauthorized Error",
+        "solution": "Please issue a new one at /oauth/token",
+        "type": "UnauthorizedError"
+    }
+"""

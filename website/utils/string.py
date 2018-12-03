@@ -15,6 +15,7 @@
     You should have received a copy of the GNU General Public License
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 """
+import collections
 
 from typing import Union
 
@@ -27,3 +28,20 @@ def decode_bytes(inp: Union[bytes, str])-> str:
     """
     ret = inp.decode() if isinstance(inp, bytes) else inp
     return ret
+
+
+def convert_dict(data):
+    """
+    This function will convert from a unicode object to a string the keys and values of dict.
+
+    :param data: The dictionary to convert
+
+    :return: Returns the converted dict
+    """
+
+    if isinstance(data, collections.Mapping):
+        return dict(map(convert_dict, data.items()))
+    elif isinstance(data, collections.Iterable):
+        return type(data)(map(convert_dict, data))
+    else:
+        return data

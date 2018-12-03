@@ -49,10 +49,10 @@ def generate_badrequest(error: BadRequestError) -> dict:
 """
     @apiDefine error400
 
-    @apiError (Error 400) {String} name        Error name
-    @apiError (Error 400) {String} message     Error description
-    @apiError (Error 400) {String} solution    Error solution
-    @apiError (Error 400) {String} status_code HTTP status code
+    @apiError (Error 400) {String} name="Bad Request Error"  Error name
+    @apiError (Error 400) {String} message                   Error description
+    @apiError (Error 400) {String} solution                  Error solution
+    @apiError (Error 400) {String} status_code=400           HTTP status code
 
     @apiErrorExample {json} Error 400 JSON
          HTTP/1.1 400 Bad request
@@ -67,10 +67,10 @@ def generate_badrequest(error: BadRequestError) -> dict:
 """
     @apiDefine error400malformedjson
 
-    @apiError (Error 400) {String} name        Error name
-    @apiError (Error 400) {String} message     Error description
-    @apiError (Error 400) {String} solution    Error solution
-    @apiError (Error 400) {String} status_code HTTP status code
+    @apiError (Error 400) {String} name="Bad Request Error"  Error name
+    @apiError (Error 400) {String} message                   Error description
+    @apiError (Error 400) {String} solution                  Error solution
+    @apiError (Error 400) {String} status_code=400           HTTP status code
 
     @apiErrorExample {json} Error 400 Malformed JSON
          HTTP/1.1 400 Bad request
@@ -85,10 +85,10 @@ def generate_badrequest(error: BadRequestError) -> dict:
 """
     @apiDefine error400emptyjson
 
-    @apiError (Error 400) {String} name        Error name
-    @apiError (Error 400) {String} message     Error description
-    @apiError (Error 400) {String} solution    Error solution
-    @apiError (Error 400) {String} status_code HTTP status code
+    @apiError (Error 400) {String} name="Bad Request Error"  Error name
+    @apiError (Error 400) {String} message                   Error description
+    @apiError (Error 400) {String} solution                  Error solution
+    @apiError (Error 400) {String} status_code=400           HTTP status code
 
     @apiErrorExample {json} Error 400 Empty JSON
          HTTP/1.1 400 Bad request
@@ -100,4 +100,80 @@ def generate_badrequest(error: BadRequestError) -> dict:
              "status_code": 400
          }
 
+"""
+
+"""
+    @apiDefine error400missinggranttype
+
+    @apiError (Error 400) {String} name="Bad Request Error"  Error name
+    @apiError (Error 400) {String} message                   Error description
+    @apiError (Error 400) {String} solution                  Error solution
+    @apiError (Error 400) {String} status_code=400           HTTP status code
+
+    @apiErrorExample {json} Error 400 Missing grant_type
+         HTTP/1.1 400 Bad request
+
+        {
+            "message": "Missing grant_type in request for /oauth/token.",
+            "name": "Bad Request",
+            "solution": "To generate a token, you need to supply ['uuid', 'client_secret', 'grant_type'].",
+            "type": "BadRequestError"
+       },
+
+"""
+"""
+    @apiDefine error400missinguuid
+
+    @apiError (Error 400) {String} name="Bad Request Error"  Error name
+    @apiError (Error 400) {String} message                   Error description
+    @apiError (Error 400) {String} solution                  Error solution
+    @apiError (Error 400) {String} status_code=400           HTTP status code
+
+    @apiErrorExample {json} Error 400 Missing uuid
+         HTTP/1.1 400 Bad request
+
+        {
+            "message": "Missing uuid in request for /oauth/token.",
+            "name": "Bad Request",
+            "solution": "To generate a token, you need to supply ['uuid', 'client_secret', 'grant_type'].",
+            "type": "BadRequestError"
+       },
+
+"""
+"""
+    @apiDefine error400missingclient_secret
+
+    @apiError (Error 400) {String} name="Bad Request Error"  Error name
+    @apiError (Error 400) {String} message                   Error description
+    @apiError (Error 400) {String} solution                  Error solution
+    @apiError (Error 400) {String} status_code=400           HTTP status code
+
+    @apiErrorExample {json} Error 400 Missing client_secret
+         HTTP/1.1 400 Bad request
+
+        {
+            "message": "Missing client_secret in request for /oauth/token.",
+            "name": "Bad Request",
+            "solution": "To generate a token, you need to supply ['uuid', 'client_secret', 'grant_type'].",
+            "type": "BadRequestError"
+       },
+
+"""
+
+"""
+    @apiDefine error400malformedtoken
+
+    @apiError (Error 400) {String} name="Bad Request Error"  Error name
+    @apiError (Error 400) {String} message                   Error description
+    @apiError (Error 400) {String} solution                  Error solution
+    @apiError (Error 400) {String} status_code=400           HTTP status code
+
+    @apiErrorExample {json} Error 400 Malformed Token
+         HTTP/1.1 400 Bad request
+        {
+            "message": "Malformed token: YOUR_ACCESS_TOKEN.",
+            "name": "Bad Request",
+            "solution": "Check your token and try again",
+            "type": "BadRequestError"
+        }
 """

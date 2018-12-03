@@ -1,0 +1,62 @@
+{#    Source of juleslasne.com/.net/.me/.fr                                 #}
+{#    Copyright (C) 2018-2019 Jules Lasne - <jules@juleslasne.com>          #}
+
+{#    This program is free software: you can redistribute it and/or modify  #}
+{#    it under the terms of the GNU General Public License as published by  #}
+{#    the Free Software Foundation, either version 3 of the License, or     #}
+{#    (at your option) any later version.                                   #}
+
+{#    This program is distributed in the hope that it will be useful,       #}
+{#    but WITHOUT ANY WARRANTY; without even the implied warranty of        #}
+{#    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the         #}
+{#    GNU General Public License for more details.                          #}
+
+{#    You should have received a copy of the GNU General Public License     #}
+{#    along with this program.  If not, see <http://www.gnu.org/licenses/>. #}
+
+{% block api_signup %}
+    <section id="api-signup">
+        <div class="container">
+            <h2 class="text-center text-uppercase text-secondary mb-0">Sign up for my API!</h2>
+            <hr class="star-dark mb-5">
+            <h6 class="text-center text-secondary mb-0">Did you know that I made an example API for this website ?</h6>
+            <p class="text-center text-secondary mb-4">
+                It's protected behind <code>oauth</code> authentication and that is why you will need to create an account.<br>
+                You can check out it's documentation <a href="{{ g.doc_link }}" target="_blank">here</a> and sign up to receive your credentials immediatly right here!
+            </p>
+            <div class="row">
+                <div class="col-lg-8 mx-auto">
+                    <form name="sentMessage" id="apiForm" novalidate="novalidate" action="{{ url_for("home.register_api") }}">
+                        <div class="control-group">
+                            <div class="form-group floating-label-form-group controls mb-0 pb-2">
+                                <label>Name</label>
+                                <input class="form-control" id="name" type="text" placeholder="Name" required="required" data-validation-required-message="Please enter your name." name="api_name">
+                                <p class="help-block text-danger"></p>
+                            </div>
+                        </div>
+                        <div class="control-group">
+                            <div class="form-group floating-label-form-group controls mb-0 pb-2">
+                                <label>Email Address</label>
+                                <input class="form-control" id="email" type="email" placeholder="Email Address" required="required" data-validation-required-message="Please enter your email address." name="api_email">
+                                <p class="help-block text-danger"></p>
+                            </div>
+                        </div>
+                        {# TODO: Check if reason is too much. If it is then remove. #}
+                        <div class="control-group">
+                            <div class="form-group floating-label-form-group controls mb-0 pb-2">
+                                <label>Message</label>
+                                <textarea class="form-control" id="message" rows="3" placeholder="Why would you like to have access to my API?" required="required" data-validation-required-message="Please enter why you'd like to have access to my API" name="api_reason"></textarea>
+                                <p class="help-block text-danger"></p>
+                            </div>
+                        </div>
+                        <br>
+                        <div id="success"></div>
+                        <div class="form-group">
+                            <button type="submit" class="btn btn-primary btn-xl" id="sendMessageButton">Get your codes !</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock api_signup %}

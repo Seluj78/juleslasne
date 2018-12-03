@@ -16,28 +16,4 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 """
 
-import datetime
-
-from flask import render_template
-
-# TODO: Add the preview_text
-
-
-def copy_generate_html_email(email: str, text: str, name: str) -> str:
-    """
-    Generates the message copy email.
-
-    :param email: The email of the sender
-    :param text: The body of the message
-    :param name: The name of the sender
-
-    :return: Returns the generated copy of the message email in HTML form.
-    """
-
-    return render_template("email/contact_copy.html",
-                           email=email,
-                           text=text,
-                           timestamp=datetime.datetime.utcnow(),
-                           name=name,
-                           email_title="Copy of the message sent from juleslasne.com"
-                           )
+DOC_LINK = "http://docs-juleslasne.s3-website.eu-west-3.amazonaws.com/"

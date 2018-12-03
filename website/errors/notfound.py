@@ -50,10 +50,10 @@ def generate_notfound(error: NotFoundError) -> dict:
 """
     @apiDefine error404
 
-    @apiError (Error 404) {String} name        Error name
-    @apiError (Error 404) {String} message     Error description
-    @apiError (Error 404) {String} solution    Error solution
-    @apiError (Error 404) {String} status_code HTTP status code
+    @apiError (Error 404) {String} name="Not Found"   Error name
+    @apiError (Error 404) {String} message            Error description
+    @apiError (Error 404) {String} solution           Error solution
+    @apiError (Error 404) {String} status_code=404    HTTP status code
 
     @apiErrorExample {json} Error 404 JSON
          HTTP/1.1 404 Not Found Error
@@ -68,10 +68,10 @@ def generate_notfound(error: NotFoundError) -> dict:
 """
     @apiDefine error404noproject
 
-    @apiError (Error 404) {String} name        Error name
-    @apiError (Error 404) {String} message     Error description
-    @apiError (Error 404) {String} solution    Error solution
-    @apiError (Error 404) {String} status_code HTTP status code
+    @apiError (Error 404) {String} name="Not Found"   Error name
+    @apiError (Error 404) {String} message            Error description
+    @apiError (Error 404) {String} solution           Error solution
+    @apiError (Error 404) {String} status_code=404    HTTP status code
 
     @apiErrorExample {json} Error 404 JSON Not Found
          HTTP/1.1 404 Not Found Error
@@ -82,4 +82,39 @@ def generate_notfound(error: NotFoundError) -> dict:
              "solution": "Please check your syntax and try again.",
              "status_code": 404
          }
+"""
+"""
+    @apiDefine error404noapiuser
+
+    @apiError (Error 404) {String} name="Not Found"   Error name
+    @apiError (Error 404) {String} message            Error description
+    @apiError (Error 404) {String} solution           Error solution
+    @apiError (Error 404) {String} status_code=404    HTTP status code
+
+    @apiErrorExample {json} Error 404 ApiUser Not Found
+         HTTP/1.1 404 Not Found Error
+        {
+            "message": "ApiUser xxx not found.",
+            "name": "Not Found Error",
+            "solution": "Check the identifier given and try again.",
+            "type": "NotFoundError"
+       }
+"""
+"""
+    @apiDefine error404secretnomatch
+
+    @apiError (Error 404) {String} name="Not Found"   Error name
+    @apiError (Error 404) {String} message            Error description
+    @apiError (Error 404) {String} solution           Error solution
+    @apiError (Error 404) {String} status_code=404    HTTP status code
+
+    @apiErrorExample {json} Error 404 JSON Not Found
+         HTTP/1.1 404 Not Found Error
+
+        {
+            "message": "Can't generate oauth token: `client_secret` xxx doesn't match the one found for `uuid` yyy.",
+            "name": "Bad Request",
+            "solution": "Check the `client_secret` and try again",
+            "type": "BadRequestError"
+    },
 """

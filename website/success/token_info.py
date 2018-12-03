@@ -16,28 +16,28 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 """
 
-import datetime
-
-from flask import render_template
-
-# TODO: Add the preview_text
+from flask import jsonify
 
 
-def copy_generate_html_email(email: str, text: str, name: str) -> str:
+def SuccessTokenInfo(message: str, token_info: dict) -> dict:
     """
-    Generates the message copy email.
+    Will generate a SuccessNewToken message with the appropriate return code and jsonify it.
 
-    :param email: The email of the sender
-    :param text: The body of the message
-    :param name: The name of the sender
+    :param message: The message to include
+    :param token_info: The info on the new token
 
-    :return: Returns the generated copy of the message email in HTML form.
+    :return: Returns a json response
     """
 
-    return render_template("email/contact_copy.html",
-                           email=email,
-                           text=text,
-                           timestamp=datetime.datetime.utcnow(),
-                           name=name,
-                           email_title="Copy of the message sent from juleslasne.com"
-                           )
+    status_code = 200
+    success = True
+    json = {
+        'success': success,
+        'message': message,
+        'token_info': token_info,
+        'code': status_code
+    }
+    resp = jsonify(json)
+    resp.status_code = status_code
+
+    return resp

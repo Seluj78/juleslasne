@@ -16,24 +16,6 @@
 
     You should have received a copy of the GNU General Public License
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
-
-    @apiDefine error409
-
-    @apiError (Error 409) {String} name        Error name
-    @apiError (Error 409) {String} message     Error description
-    @apiError (Error 409) {String} solution    Error solution
-    @apiError (Error 409) {String} status_code HTTP status code
-
-    @apiErrorExample {json} Error 409 JSON
-         HTTP/1.1 409 Conflict Error
-
-         {
-             "name": "Conflict Error",
-             "message": "The email you entered is already in use",
-             "solution": "Please use another",
-             "status_code": 409
-         }
-
 """
 
 from website import application
@@ -63,3 +45,23 @@ def generate_conflict(error: ConflictError) -> dict:
     """
 
     return generate_error_json(error, 409)
+
+
+"""
+    @apiDefine error409
+
+    @apiError (Error 409) {String} name="Conflict Error"  Error name
+    @apiError (Error 409) {String} message                Error description
+    @apiError (Error 409) {String} solution               Error solution
+    @apiError (Error 409) {String} status_code=409        HTTP status code
+
+    @apiErrorExample {json} Error 409 JSON
+         HTTP/1.1 409 Conflict Error
+
+         {
+             "name": "Conflict Error",
+             "message": "The email you entered is already in use",
+             "solution": "Please use another",
+             "status_code": 409
+         }
+"""

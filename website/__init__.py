@@ -66,14 +66,27 @@ jl_db = peewee.MySQLDatabase(
     user=os.environ.get("JL_DB_USER", None)
 )
 
+application.config['JWT_SECRET_KEY'] = os.environ.get('FLASK_SECRET_KEY')
 
+# TODO: Send an email when tables are created, as a warning.
 from website.models.projects import Project
+from website.models.api_users import ApiUser
 
 if not Project.table_exists():
     Project.create_table()
+
+if not ApiUser.table_exists():
+    ApiUser.create_table()
+
 
 from website.routes.views.home import home_bp
 
 application.register_blueprint(home_bp)
 
 from website.routes.api import projects
+from website.routes.api import oauth
+
+
+from website.errors import method_not_allowed
+
+# TODO: Add a new entry in the error classes to put a link to the doc
